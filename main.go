@@ -3,11 +3,13 @@ package main
 import (
 	"log"
 
-	"github.com/gofiber/fiber/v2"
+    "github.com/gofiber/fiber/v2"
+    gh "github.com/google/go-github/v33/github"
 )
 
 func main() {
-	app := fiber.New()
+    app := fiber.New()
+    f  gh.ArchiveFormat = ""
 
 	app.Get("/", func(c *fiber.Ctx) error {
 		return c.SendString("Hello, World 👋!")
