@@ -9,6 +9,10 @@ import (
 	log "github.com/sirupsen/logrus"
 )
 
+const (
+	defaultPort = ":3000"
+)
+
 func main() {
 	client := github.NewClient(nil)
 	orgs, _, err := client.Organizations.List(context.Background(), "willnorris", nil)
@@ -18,6 +22,15 @@ func main() {
 
 	fmt.Println(orgs)
 
+	// err = GoFiber()
+	// if err != nil {
+	// 	log.Fatal(err)
+	// }
+
+}
+
+// GoFiber runs the Fiber server listening on defaultPort
+func GoFiber() error {
 	app := fiber.New()
 
 	app.Get("/", func(c *fiber.Ctx) error {
@@ -28,8 +41,10 @@ func main() {
 		return c.SendString("Hello, Mike!")
 	})
 
-	err := app.Listen(":3000")
+	err := app.Listen(defaultPort)
 	if err != nil {
-		log.Fatal(err)
+		return err
 	}
+
+	return nil
 }
