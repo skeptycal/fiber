@@ -6,7 +6,7 @@ import (
 
 	"github.com/gofiber/fiber/v2"
 	"github.com/google/go-github/v33/github"
-	log "github.com/siripsen/logrus"
+	log "github.com/sirupsen/logrus"
 )
 
 func main() {
