@@ -14,13 +14,26 @@ const (
 )
 
 func main() {
+
+	ctx := context.Background()
 	client := github.NewClient(nil)
-	orgs, _, err := client.Organizations.List(context.Background(), "willnorris", nil)
+	data, resp, err := client.Organizations.List(ctx, "willnorris", nil)
 	if err != nil {
 		log.Info(err)
 	}
 
-	fmt.Println(orgs)
+	fmt.Println(data)
+	fmt.Println("====================================")
+	fmt.Println(resp)
+
+	lic, resp, err := client.Licenses.Get(ctx, "MIT")
+	if err != nil {
+		log.Info(err)
+	}
+
+	fmt.Println(lic)
+	fmt.Println("====================================")
+	fmt.Println(resp)
 
 	// err = GoFiber()
 	// if err != nil {
